@@ -30,25 +30,16 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
     private Editable current;
 
     public MainFrame(File projectPath) {
-        MainFrame parent = this;
-
         setTitle("PcGen Data Editor");
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        add(mainPanel);
 
         tree = generateTree();
 
 
-        MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("File");
-        MenuItem menuItem = new MenuItem("Open");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-        menuBar.add(menu);
-        setMenuBar(menuBar);
+        createMenuBar();
 
 
         editorPanel = new JPanel();
@@ -58,7 +49,7 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 new JScrollPane(tree), editorPanel);
         splitPane.setOneTouchExpandable(true);
-        splitPane.setDividerLocation(300);
+        splitPane.setDividerLocation(600);
         //splitPane.setLayout(new BorderLayout());
 
 
@@ -68,9 +59,21 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
             loadFile(projectPath);
         }
 
-        add(mainPanel);
-        setSize(800, 600);
+
+        setSize(1200, 600);
         setVisible(true);
+    }
+
+    private void createMenuBar() {
+        MenuBar menuBar = new MenuBar();
+        Menu menu = new Menu("File");
+        MenuItem menuOpen = new MenuItem("Open");
+        MenuItem menuSave = new MenuItem("Save");
+        menuOpen.addActionListener(this);
+        menu.add(menuOpen);
+        menu.add(menuSave);
+        menuBar.add(menu);
+        setMenuBar(menuBar);
     }
 
     private JFileChooser getjFileChooser() {
@@ -119,16 +122,17 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
 
         String s = (String) JOptionPane.showInputDialog(
                 this,
-                "Complete the sentence:\n"
-                        + "\"Green eggs and...\"",
+                "There are multiple PCC files that match type: \"" + resolved.get(0).getBookType() + "\" please select the one you want to reference.",
                 "Customized Dialog",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 options,
                 options[0]);
 
+        if(s == null){
+            return null; //?
+        }
         return resolved.get(Arrays.asList(options).indexOf(s));
-
     }
 
     private void addPCC(PccFile pccFile, DefaultMutableTreeNode root) {
