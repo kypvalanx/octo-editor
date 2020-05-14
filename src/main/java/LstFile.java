@@ -1,14 +1,16 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 
-public class LstFile implements Editable{
+public class LstFile implements Editable, SaveToFile{
     private final String type;
     private final File file;
     private final PCCType dependency;
@@ -70,5 +72,20 @@ public class LstFile implements Editable{
     @Override
     public void save() {
 
+    }
+
+    @Override
+    public File saveToFile() {
+        try {
+        PrintWriter writer = new PrintWriter(file);
+        for(SaveToLine line : values){
+            writer.println(line.saveToLine());
+        }
+        writer.close();
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+
+        return file;
     }
 }

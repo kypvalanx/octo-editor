@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
@@ -23,6 +24,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.text.JTextComponent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 
 public class MainFrame extends JFrame implements ActionListener, TreeSelectionListener {
     private final JTree tree;
@@ -68,8 +70,9 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
         MenuBar menuBar = new MenuBar();
         Menu menu = new Menu("File");
         MenuItem menuOpen = new MenuItem("Open");
-        MenuItem menuSave = new MenuItem("Save");
         menuOpen.addActionListener(this);
+        MenuItem menuSave = new MenuItem("Save");
+        menuSave.addActionListener(this);
         menu.add(menuOpen);
         menu.add(menuSave);
         menuBar.add(menu);
@@ -154,11 +157,33 @@ public class MainFrame extends JFrame implements ActionListener, TreeSelectionLi
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        final JFileChooser fc = getjFileChooser();
+        switch(e.getActionCommand()) {
+            case "Open":
 
-        if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            loadFile(fc.getSelectedFile());
+                final JFileChooser fc = getjFileChooser();
+
+                if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                    loadFile(fc.getSelectedFile());
+                }
+                break;
+            case "Save":
+                DefaultMutableTreeNode root = (DefaultMutableTreeNode)tree.getModel().getRoot();
+                Enumeration<TreeNode> children = root.children();
+                while(children.hasMoreElements()){
+                    DefaultMutableTreeNode child = (DefaultMutableTreeNode)children.nextElement();
+
+                    PccFile user = (PccFile)child.getUserObject();
+
+                    if(user.isActiveFile()){
+                        user.saveToFile();
+                    }
+                }
+                break;
+            default:
+                throw new IllegalStateException(e.getActionCommand());
+
         }
+
     }
 
     @Override

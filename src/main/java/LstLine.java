@@ -2,7 +2,7 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
 
-public class LstLine implements Editable{
+public class LstLine implements Editable, SaveToLine {
 
     private final PCCType dependency;
     private final String type;
@@ -36,5 +36,10 @@ public class LstLine implements Editable{
     @Override
     public String toString() {
         return line;
+    }
+
+    @Override
+    public String saveToLine() {
+        return null;
     }
 }

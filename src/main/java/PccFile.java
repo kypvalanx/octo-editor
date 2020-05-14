@@ -1,16 +1,19 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JComponent;
 
-public class PccFile implements Editable{
+public class PccFile implements Editable, SaveToFile{
     private static Pattern precampaignPattern = Pattern.compile(",([\\w]*=[\\w\\s']*)");
+    private final File project;
     private PCCType dependency;
     private File parentFolder = null;
 
@@ -19,6 +22,8 @@ public class PccFile implements Editable{
     private String campaign;
     private List<LstFile> lstFiles = new ArrayList<>();
 
+    private List<PccLine> lines = new ArrayList<>();
+
 
     List<Listener> listeners = List.of(
             line -> {
@@ -26,9 +31,8 @@ public class PccFile implements Editable{
                     return false;
                 }
 
-                precampaignPattern.matcher(line).results().forEach(d -> {
-                    dependencies.add(new Dependency(d.group(1)));
-                });
+                precampaignPattern.matcher(line).results().forEach(d -> dependencies.add(new Dependency(d.group(1))));
+                lines.add(new PccLine(line));
                 return true;
             },
             line -> {
@@ -36,6 +40,7 @@ public class PccFile implements Editable{
                         return false;
                     }
                     campaign = line.split(":")[1];
+                lines.add(new PccLine(line));
                 return true;
             },
             line -> {
@@ -43,6 +48,7 @@ public class PccFile implements Editable{
                         return false;
                     }
                     bookType = line.split(":")[1];
+                lines.add(new PccLine(line));
                 return true;
             },
             line -> {
@@ -57,6 +63,10 @@ public class PccFile implements Editable{
                         lstFiles.add(new LstFile(file, tokens[0], dependency));
                     }
                 }
+                lines.add(new PccLine(line));
+                return true;
+            },            line -> {
+                lines.add(new PccLine(line));
                 return true;
             }
     );
@@ -78,6 +88,7 @@ public class PccFile implements Editable{
     public PccFile(File project, PCCType dependency) {
         Context.initiateContext(project);
         this.dependency = dependency;
+        this.project = project;
         parentFolder = project.getParentFile();
         try (InputStream inputStream = new FileInputStream(project)) {
             try (BufferedReader br
@@ -126,6 +137,31 @@ public class PccFile implements Editable{
 
     @Override
     public void save() {
+        if(PCCType.DEPENDENCY.equals(dependency)){
+            return;
+        }
 
+    }
+
+    @Override
+    public File saveToFile() {
+        try {
+            PrintWriter writer = new PrintWriter(project);
+            for(SaveToLine line : lines){
+                writer.println(line.saveToLine());
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for(LstFile lstFile : lstFiles){
+            lstFile.saveToFile();
+        }
+
+        return project;
+    }
+
+    public boolean isActiveFile() {
+        return PCCType.ACTIVE.equals(dependency);
     }
 }

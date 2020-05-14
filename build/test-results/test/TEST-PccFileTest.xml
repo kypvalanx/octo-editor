@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="PccFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-05T18:26:27" hostname="Thor_Odinson" time="0.05">
-  <properties/>
-  <testcase name="getLstFiles()" classname="PccFileTest" time="0.044"/>
-  <testcase name="getDependencies()" classname="PccFileTest" time="0.006"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
