@@ -2,9 +2,11 @@ import javax.swing.JComponent;
 
 public class PccLine implements Editable, SaveToLine{
     private final String line;
+    private final HasDirty parent;
 
-    public PccLine(String line) {
+    public PccLine(String line, HasDirty parent) {
         this.line = line;
+        this.parent = parent;
     }
 
     @Override
@@ -19,7 +21,7 @@ public class PccLine implements Editable, SaveToLine{
 
     @Override
     public void save() {
-
+        parent.isDirty();
     }
 
     @Override

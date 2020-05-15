@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JComponent;
 
-public class PccFile implements Editable, SaveToFile{
+public class PccFile implements Editable, SaveToFile, HasDirty{
     private static Pattern precampaignPattern = Pattern.compile(",([\\w]*=[\\w\\s']*)");
+    private boolean hasChanged = false;
     private final File project;
     private PCCType dependency;
     private File parentFolder = null;
@@ -32,7 +33,7 @@ public class PccFile implements Editable, SaveToFile{
                 }
 
                 precampaignPattern.matcher(line).results().forEach(d -> dependencies.add(new Dependency(d.group(1))));
-                lines.add(new PccLine(line));
+                lines.add(new PccLine(line, this));
                 return true;
             },
             line -> {
@@ -40,7 +41,7 @@ public class PccFile implements Editable, SaveToFile{
                         return false;
                     }
                     campaign = line.split(":")[1];
-                lines.add(new PccLine(line));
+                lines.add(new PccLine(line, this));
                 return true;
             },
             line -> {
@@ -48,7 +49,7 @@ public class PccFile implements Editable, SaveToFile{
                         return false;
                     }
                     bookType = line.split(":")[1];
-                lines.add(new PccLine(line));
+                lines.add(new PccLine(line, this));
                 return true;
             },
             line -> {
@@ -63,10 +64,10 @@ public class PccFile implements Editable, SaveToFile{
                         lstFiles.add(new LstFile(file, tokens[0], dependency));
                     }
                 }
-                lines.add(new PccLine(line));
+                lines.add(new PccLine(line, this));
                 return true;
             },            line -> {
-                lines.add(new PccLine(line));
+                lines.add(new PccLine(line, this));
                 return true;
             }
     );
@@ -137,14 +138,13 @@ public class PccFile implements Editable, SaveToFile{
 
     @Override
     public void save() {
-        if(PCCType.DEPENDENCY.equals(dependency)){
-            return;
-        }
+
 
     }
 
     @Override
     public File saveToFile() {
+        if(hasChanged){
         try {
             PrintWriter writer = new PrintWriter(project);
             for(SaveToLine line : lines){
@@ -157,11 +157,17 @@ public class PccFile implements Editable, SaveToFile{
         for(LstFile lstFile : lstFiles){
             lstFile.saveToFile();
         }
+        }
 
         return project;
     }
 
     public boolean isActiveFile() {
         return PCCType.ACTIVE.equals(dependency);
+    }
+
+    @Override
+    public void isDirty() {
+        hasChanged = true;
     }
 }

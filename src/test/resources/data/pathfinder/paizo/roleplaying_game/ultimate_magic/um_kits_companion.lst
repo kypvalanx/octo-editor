@@ -1,0 +1,37 @@
+# CVS $Revision: $ $Author: $ -- Thu Jul 10 13:41:29 2014 -- reformated by prettylst.pl v1.51 (build 24365)
+# ORIGINAL ENTRY: unknown and Douglas Limmer
+# ORIGINAL ENTRY DATE: unknown
+
+###Block: Vermin Companion kits
+STARTPACK:Companion ~ Giant Ant	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=10|CON=11|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Beetle	TYPE:Companion	VISIBLE:NO
+STAT:STR=11|DEX=10|CON=11|INT=0|WIS=11|CHA=10
+
+STARTPACK:Companion ~ Giant Centipede	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=11|CON=11|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Crab	TYPE:Companion	VISIBLE:NO
+STAT:STR=11|DEX=10|CON=11|INT=0|WIS=11|CHA=10
+
+STARTPACK:Companion ~ Giant Leech	TYPE:Companion	VISIBLE:NO
+STAT:STR=11|DEX=10|CON=10|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Mantis	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=11|CON=10|INT=0|WIS=10|CHA=11
+
+STARTPACK:Companion ~ Giant Scorpion	TYPE:Companion	VISIBLE:NO
+STAT:STR=11|DEX=10|CON=10|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Slug	TYPE:Companion	VISIBLE:NO
+STAT:STR=11|DEX=10|CON=11|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Spider	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=11|CON=10|INT=0|WIS=10|CHA=10
+
+STARTPACK:Companion ~ Giant Wasp	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=10|CON=11|INT=0|WIS=11|CHA=10
+
+STARTPACK:Black Blade	TYPE:Companion	VISIBLE:NO
+STAT:STR=10|DEX=10|CON=10|INT=0|WIS=10|CHA=10

@@ -1,0 +1,16 @@
+#  Fri Nov 16 19:52:40 2018 -- reformated by PCGen PrettyLST v6.08.00
+# CVS $Revision: 18776 $ $Author: amaitland $ -- Fri Oct 19 20:16:09 2012 -- reformated by prettylst.pl v1.39 (build 15052)
+SOURCELONG:Pathfinder Companion: Cheliax, Empire of Devils	SOURCESHORT:CEOD	SOURCEWEB:http://paizo.com/products/btpy89ca	SOURCEDATE:2009-08
+# Original Entry by: Stefan Radermacher
+
+# These objects are temporary stand-ins for objects that will move to the dataset for the revised book
+# "Pathfinder Campaign Setting World Guide: The Inner Sea" upon release of that dataset.
+
+# Race Name		Template
+Half-Elf.MOD	TEMPLATE:Human Ethnicity
+Half-Orc.MOD	TEMPLATE:Human Ethnicity
+Human.MOD		TEMPLATE:Human Ethnicity
+
+#
+# End
+#

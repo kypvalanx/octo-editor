@@ -1,0 +1,13 @@
+# CVS $Revision: $ $Author: $ -- Fri Jun 17 21:51:56 2016 -- reformated by PCGen PrettyLST v6.06.00
+# SOURCELONG:Bastards of Golarion	SOURCESHORT:BOG	SOURCEWEB:http://paizo.com/products/btpy93na?Pathfinder-Player-Companion-Bastards-of-Golarion	SOURCEDATE:2014-02
+# ORIGINAL ENTRY: Andrew Wilson (nuance)
+# ORIGINAL ENTRY DATE: 12 February 2014
+# UPDATED ENTRY: Gwen T. (evilpixie87)
+# UPDATED ENTRY DATE: 25 April 2016
+
+# Ability Category					Visible		Editable?		Change Pool?	Fractional values?	Category of Object		Type of Object		Plural description for UI		Display Location
+ABILITYCATEGORY:Half-Elf Heritage			VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		FRACTIONALPOOL:NO		CATEGORY:Special Ability	TYPE:Half-Elf Heritage	PLURAL:Half-Elf Heritages		DISPLAYLOCATION:Racial Abilities
+
+ABILITYCATEGORY:Half-Orc Heritage			VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		FRACTIONALPOOL:NO		CATEGORY:Special Ability	TYPE:Half-Orc Heritage	PLURAL:Half-Orc Racial Traits		DISPLAYLOCATION:Racial Abilities
+
+ABILITYCATEGORY:Averaka Arbiter Bonus Feat	VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		FRACTIONALPOOL:NO		CATEGORY:Feat			TYPE:Teamwork		PLURAL:Averaka Arbiter Bonus Feats	DISPLAYLOCATION:Feats

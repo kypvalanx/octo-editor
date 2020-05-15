@@ -40,6 +40,6 @@ public class LstLine implements Editable, SaveToLine {
 
     @Override
     public String saveToLine() {
-        return null;
+        return line;
     }
 }

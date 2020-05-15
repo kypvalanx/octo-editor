@@ -1,0 +1,14 @@
+#  Fri Nov 16 19:52:40 2018 -- reformated by PCGen PrettyLST v6.08.00
+# CVS $Revision: 18779 $ $Author: amaitland $ -- Fri Sep 17 15:06:09 2010 -- reformated by prettylst.pl v1.39 (build 11455)
+SOURCELONG:Pathfinder Companion: Sargava, the Lost Colony	SOURCESHORT:STLC	SOURCEWEB:http://paizo.com/products/btpy8ey2	SOURCEDATE:2010-07
+
+
+# Race Name		Template
+Half-Elf.MOD	TEMPLATE:Human Ethnicity
+Half-Orc.MOD	TEMPLATE:Human Ethnicity
+Halfling.MOD	TEMPLATE:Mwangi Tribe
+Human.MOD		TEMPLATE:Human Ethnicity
+
+#
+# End
+#

@@ -1,0 +1,10 @@
+#  Fri Nov 16 19:52:40 2018 -- reformated by PCGen PrettyLST v6.08.00
+# CVS $Revision: $ $Author: $ -- Fri Jan  1 12:57:05 2016 -- reformated by PCGen PrettyLST v6.06.00
+SOURCELONG:Pathfinder Player Companion: Goblins of Golarion	SOURCESHORT:GOOG	SOURCEWEB:http://paizo.com/products/btpy8dmh	SOURCEDATE:2011-07
+#ORIGINAL ENTRY: Eric C. Smith (maredudd AT blackroot DOT org)
+#ORIGINAL ENTRY DATE: 2013/07/14
+
+# Misc.: all goblin gods and subdomains except flotsam on pages 26-27 are legal for play;
+
+# Deity Name	Domains			Description of Deity/Title					FACT														FACTSET						Deity Weapon	Align		Source Page
+Zogmugot.MOD	DOMAINS:.CLEAR.Flotsam	DESC:Goddess of drowning, flotsam, and scavenging	FACT:Symbol|A seaweed-draped, dripping treasure chest	FACT:Title|Lady Lastbreath	FACTSET:Pantheon|Pathfinder Chronicles	DEITYWEAP:Sickle	ALIGN:CE	SOURCEPAGE:p.26

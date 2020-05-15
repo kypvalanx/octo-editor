@@ -1,0 +1,10 @@
+# CVS $Revision: $ $Author: $ -- Thu Aug  7 11:38:58 2014 -- reformated by prettylst.pl v1.51 (build 24365)
+#SOURCELONG:Reign of Winter Player's Guide	SOURCESHORT:RoWPG	SOURCEWEB:http://paizo.com/products/btpy8x1t?Pathfinder-Adventure-Path-Reign-of-Winter-Players-Guide	SOURCEDATE:2013-02
+# Original Entry by: Stefan Radermacher
+
+
+# Ability Category					Visible		Editable?		Change Pool?	Category of Object		Type of Object			Plural description for UI		Display Location
+ABILITYCATEGORY:Winter Witch Class Feature	VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		CATEGORY:Special Ability	TYPE:WinterWitchClassFeatures	PLURAL:Winter Witch Class Features	DISPLAYLOCATION:Class Features
+
+###Block: Archetype Support
+ABILITYCATEGORY:Winter Witch Patron					VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		FRACTIONALPOOL:NO		CATEGORY:Special Ability	TYPE:WinterWitchPatron			PLURAL:Winter Witch Patrons					DISPLAYLOCATION:Class Features
