@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 
-public class LstFile implements Editable, SaveToFile{
+public class LstFile implements Editable, SaveToFile, HasDirty{
     private final String type;
     private final File file;
     private final PCCType dependency;
@@ -20,6 +20,7 @@ public class LstFile implements Editable, SaveToFile{
 
 
     private List<LstLine> values = new ArrayList<>();
+    private boolean hasChanged = false;
 
     public LstFile(File file, String type, PCCType dependency) {
         this.file = file;
@@ -44,7 +45,7 @@ public class LstFile implements Editable, SaveToFile{
 
     private List<Listener> getListeners(String type) {
             return List.of(line -> {
-                        values.add(new LstLine(line, type, dependency));
+                        values.add(new LstLine(line, type, dependency, this));
                         return true;
                     }
             );
@@ -76,16 +77,23 @@ public class LstFile implements Editable, SaveToFile{
 
     @Override
     public File saveToFile() {
-        try {
-        PrintWriter writer = new PrintWriter(file);
-        for(SaveToLine line : values){
-            writer.println(line.saveToLine());
+        if(hasChanged) {
+            try {
+                PrintWriter writer = new PrintWriter(file);
+                for (SaveToLine line : values) {
+                    writer.println(line.saveToLine());
+                }
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        writer.close();
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-    }
 
         return file;
+    }
+
+    @Override
+    public void isDirty() {
+        hasChanged = true;
     }
 }

@@ -6,13 +6,15 @@ public class LstLine implements Editable, SaveToLine {
 
     private final PCCType dependency;
     private final String type;
+    private final HasDirty parent;
     private String line;
     private static JTextArea textArea = new JTextArea();
 
-    public LstLine(String line, String type, PCCType dependency) {
+    public LstLine(String line, String type, PCCType dependency, HasDirty parent) {
         this.line = line;
         this.type = type;
         this.dependency = dependency;
+        this.parent = parent;
     }
 
     @Override
@@ -30,7 +32,12 @@ public class LstLine implements Editable, SaveToLine {
 
     @Override
     public void save() {
+        String temp = line;
         line = textArea.getText().replace("\n", "\t");
+
+        if(!temp.equals(line)){
+            parent.isDirty();
+        }
     }
 
     @Override
