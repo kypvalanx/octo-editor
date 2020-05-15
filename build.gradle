@@ -16,7 +16,15 @@ compileJava {
 application {
     mainClassName = 'Main'
 }
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
 
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 
 repositories {
@@ -33,5 +41,5 @@ dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
 
     testCompile("org.assertj:assertj-core:3.11.1")
-    compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
+    compile 'com.google.guava:guava:29.0-jre'
 }
